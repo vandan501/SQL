@@ -1,0 +1,272 @@
+mysql> select * from actors;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Savita    | Rakhdel  | Female |    50000 |
++-----------+----------+--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> insert into actors (FirstName,LastName,Gender,networth) values("Akshar","Patela","Male",708000),("Vraja","Sharm","Male",100000);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from actors where networth >=50000;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Savita    | Rakhdel  | Female |    50000 |
+| Akshar    | Patela   | Male   |   708000 |
+| Vraja     | Sharm    | Male   |   100000 |
++-----------+----------+--------+----------+
+6 rows in set (0.01 sec)
+
+mysql> select * from actors where networth >50000;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Akshar    | Patela   | Male   |   708000 |
+| Vraja     | Sharm    | Male   |   100000 |
++-----------+----------+--------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from actors where Gender=Male;
+ERROR 1054 (42S22): Unknown column 'Male' in 'where clause'
+mysql> select * from actors where Gender = "Male";
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
+| Akshar    | Patela   | Male   |   708000 |
+| Vraja     | Sharm    | Male   |   100000 |
++-----------+----------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select FirstName,networth from actors where Gender="Female;"
+    -> select FirstName,networth from actors where Gender="Female";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select FirstName,networth from actors where Gender="Female"' at line 2
+mysql> select FirstName,networth from actors where Gender="Female";
++-----------+----------+
+| FirstName | networth |
++-----------+----------+
+| Rekha     |   700000 |
+| Rekha     |   700000 |
+| Savita    |    50000 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from actors;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Savita    | Rakhdel  | Female |    50000 |
+| Akshar    | Patela   | Male   |   708000 |
+| Vraja     | Sharm    | Male   |   100000 |
++-----------+----------+--------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from actors where FirstName like "ru%";
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
++-----------+----------+--------+----------+
+1 row in set (0.02 sec)
+
+mysql> select * from actors where FirstName like "%bh";
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
++-----------+----------+--------+----------+
+1 row in set (0.00 sec)
+
+mysql> select * from actors where FirstName like "%b%";
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
++-----------+----------+--------+----------+
+1 row in set (0.00 sec)
+
+mysql> select * from actors where FirstName like "%a%";
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Savita    | Rakhdel  | Female |    50000 |
+| Akshar    | Patela   | Male   |   708000 |
+| Vraja     | Sharm    | Male   |   100000 |
++-----------+----------+--------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from actors ORDER BY networth;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Savita    | Rakhdel  | Female |    50000 |
+| Vraja     | Sharm    | Male   |   100000 |
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Akshar    | Patela   | Male   |   708000 |
++-----------+----------+--------+----------+
+6 rows in set (0.01 sec)
+
+mysql> select * from actors ORDER BY desc networth;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc networth' at line 1
+mysql> select * from actors ORDER BY networth des;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'des' at line 1
+mysql> select * from actors ORDER BY networth dsc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dsc' at line 1
+mysql> select * from actors ORDER BY networth asc;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Savita    | Rakhdel  | Female |    50000 |
+| Vraja     | Sharm    | Male   |   100000 |
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Akshar    | Patela   | Male   |   708000 |
++-----------+----------+--------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from actors ORDER BY networth desc;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Akshar    | Patela   | Male   |   708000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rushabh   | shah     | Male   |   500000 |
+| Vraja     | Sharm    | Male   |   100000 |
+| Savita    | Rakhdel  | Female |    50000 |
++-----------+----------+--------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from actors order by FirstName;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Akshar    | Patela   | Male   |   708000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rushabh   | shah     | Male   |   500000 |
+| Savita    | Rakhdel  | Female |    50000 |
+| Vraja     | Sharm    | Male   |   100000 |
++-----------+----------+--------+----------+
+6 rows in set (0.01 sec)
+
+mysql> select * from actors order by FirstName desc;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Vraja     | Sharm    | Male   |   100000 |
+| Savita    | Rakhdel  | Female |    50000 |
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Akshar    | Patela   | Male   |   708000 |
++-----------+----------+--------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from actors where FirstName like "ru%" order by FirstName,networth desc;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
++-----------+----------+--------+----------+
+1 row in set (0.00 sec)
+
+mysql> select * from actors limit 3;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
++-----------+----------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from actors limit 2;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
++-----------+----------+--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from actors where FirstName like %a%;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%a%' at line 1
+mysql> select * from actors where FirstName like "%a%";
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Savita    | Rakhdel  | Female |    50000 |
+| Akshar    | Patela   | Male   |   708000 |
+| Vraja     | Sharm    | Male   |   100000 |
++-----------+----------+--------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from actors where FirstName like "%a%" limit 2 offset 0;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   500000 |
+| Rekha     | Dekha    | Female |   700000 |
++-----------+----------+--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from actors where FirstName like "%a%" limit 2 offset 2;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rekha     | Dekha    | Female |   700000 |
+| Savita    | Rakhdel  | Female |    50000 |
++-----------+----------+--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from actors where FirstName like "%a%" limit 2 offset 5;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Vraja     | Sharm    | Male   |   100000 |
++-----------+----------+--------+----------+
+1 row in set (0.00 sec)
+
+mysql> update actors set networth=400000 where FirstName="rushabh";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from actors;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |   400000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Rekha     | Dekha    | Female |   700000 |
+| Savita    | Rakhdel  | Female |    50000 |
+| Akshar    | Patela   | Male   |   708000 |
+| Vraja     | Sharm    | Male   |   100000 |
++-----------+----------+--------+----------+
+6 rows in set (0.00 sec)
+
+mysql>
