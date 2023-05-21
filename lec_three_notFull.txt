@@ -1,0 +1,117 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| vandan501          |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use vandan501;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_vandan501 |
++---------------------+
+| actors              |
+| movies              |
++---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from actors;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |    88888 |
+| Savita    | Rakhdel  | Female |    50000 |
+| Akshar    | Patela   | Male   |   708000 |
+| Vraja     | Sharm    | Male   |   100000 |
++-----------+----------+--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from movies;
++----------+---------+
+| name     | ratting |
++----------+---------+
+| Bahubali |       5 |
+| Pushpa   |       5 |
+| RRR      |       5 |
++----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> insert into actors values("vandan","raval","male",589000);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into actors values("jimit","sanghavi","male",99000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into actors values("adityat","shah","male",200000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from actors;
++-----------+----------+--------+----------+
+| firstName | LastName | Gender | networth |
++-----------+----------+--------+----------+
+| Rushabh   | shah     | Male   |    88888 |
+| Savita    | Rakhdel  | Female |    50000 |
+| Akshar    | Patela   | Male   |   708000 |
+| Vraja     | Sharm    | Male   |   100000 |
+| vandan    | raval    | male   |   589000 |
+| jimit     | sanghavi | male   |    99000 |
+| adityat   | shah     | male   |   200000 |
++-----------+----------+--------+----------+
+7 rows in set (0.00 sec)
+
+mysql> desc actors;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| firstName | varchar(20) | YES  |     | NULL    |       |
+| LastName  | varchar(20) | YES  |     | NULL    |       |
+| Gender    | varchar(10) | YES  |     | NULL    |       |
+| networth  | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.08 sec)
+
+mysql> delete from movies where name="bahubali";
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from movies;
++--------+---------+
+| name   | ratting |
++--------+---------+
+| Pushpa |       5 |
+| RRR    |       5 |
++--------+---------+
+2 rows in set (0.00 sec)
+
+mysql> update movies set ratting=6 where name="pushpa";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from movies;
++--------+---------+
+| name   | ratting |
++--------+---------+
+| Pushpa |       6 |
+| RRR    |       5 |
++--------+---------+
+2 rows in set (0.00 sec)
+
+mysql>
